@@ -28,7 +28,7 @@ The judge's brief weighs, in order: fitting the prompt, funniness, originality, 
 MAKEFUN_OUTPUT_DIR=/output python3 main.py
 ```
 
-`main.py` is Python 3.13 standard library only, deterministic, and writes the single line to `$MAKEFUN_OUTPUT_DIR/entry.txt`, asserting the 1–200 character gate first.
+`main.py` is Python 3.13 standard library only, deterministic, and writes the single line to `$MAKEFUN_OUTPUT_DIR/entry.txt`, asserting the 1–200 character gate first. Before writing it validates the line (length, single line, no padding, not only white space), and after writing it reads the file back and fails loudly if the bytes do not match the entry exactly — so a bad write can never pass silently.
 
 ## Verification
 
